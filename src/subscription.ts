@@ -20,7 +20,10 @@ export class FirehoseSubscription extends FirehoseSubscriptionBase {
     const postsToCreate = ops.posts.creates
       .filter((create) => {
         // only rtgame-related posts
-        return create.record.text.toLowerCase().includes('rtgame')
+        return (
+          create.record.text.toLowerCase().includes('rtgame') ||
+          create.record.text.toLowerCase().includes('drift king')
+        )
       })
       .map((create) => {
         console.log(`${create.author}: ${create.record.text}`)
