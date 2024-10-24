@@ -1,8 +1,8 @@
-import { QueryParams } from '../lexicon/types/app/bsky/feed/getFeedSkeleton'
-import { AppContext } from '../config'
+import type { QueryParams } from '../lexicon/types/app/bsky/feed/getFeedSkeleton'
+import type { AppContext } from '../config'
 
 // max 15 chars
-export const shortname = 'whats-alf'
+export const shortname = 'the-rtgame-feed'
 
 export const handler = async (ctx: AppContext, params: QueryParams) => {
   let builder = ctx.db
@@ -13,7 +13,7 @@ export const handler = async (ctx: AppContext, params: QueryParams) => {
     .limit(params.limit)
 
   if (params.cursor) {
-    const timeStr = new Date(parseInt(params.cursor, 10)).toISOString()
+    const timeStr = new Date(Number.parseInt(params.cursor, 10)).toISOString()
     builder = builder.where('post.indexedAt', '<', timeStr)
   }
   const res = await builder.execute()
