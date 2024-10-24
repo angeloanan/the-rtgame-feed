@@ -21,8 +21,13 @@ export class FirehoseSubscription extends FirehoseSubscriptionBase {
       .filter((create) => {
         // only rtgame-related posts
         return (
-          create.record.text.toLowerCase().includes('rtgame') ||
-          create.record.text.toLowerCase().includes('drift king')
+          // RTGame but not ArtGame
+          (create.record.text.toLowerCase().includes('rtgame') &&
+            !create.record.text.toLowerCase().includes('artgame')) ||
+          // Drift King
+          create.record.text.toLowerCase().includes('drift king') ||
+          // Rumble Tumbl, may be Rumble Tumble or Rumble Tumbling etc
+          create.record.text.toLowerCase().includes('rumble tumbl')
         )
       })
       .map((create) => {
