@@ -19,15 +19,28 @@ export class FirehoseSubscription extends FirehoseSubscriptionBase {
     const postsToDelete = ops.posts.deletes.map((del) => del.uri)
     const postsToCreate = ops.posts.creates
       .filter((create) => {
+        const text = create.record.text.toLowerCase()
+
         // only rtgame-related posts
         return (
           // RTGame but not ArtGame
-          (create.record.text.toLowerCase().includes('rtgame') &&
-            !create.record.text.toLowerCase().includes('artgame')) ||
+          (text.includes('rtgame') && !text.includes('artgame')) ||
           // Drift King
-          create.record.text.toLowerCase().includes('drift king') ||
+          text.includes('drift king') ||
           // Rumble Tumbl, may be Rumble Tumble or Rumble Tumbling etc
-          create.record.text.toLowerCase().includes('rumble tumbl')
+          text.includes('rumble tumbl')
+        )
+      })
+      .filter((post) => {
+        const text = post.record.text.toLowerCase()
+        return (
+          !text.includes('sissy') ||
+          !text.includes('slut') ||
+          !text.includes('mistress') ||
+          !text.includes('goon') ||
+          !text.includes('whore') ||
+          !text.includes('dommes') ||
+          !text.includes('sex')
         )
       })
       .map((create) => {
