@@ -34,12 +34,15 @@ export class FirehoseSubscription extends FirehoseSubscriptionBase {
       .filter((post) => {
         const text = post.record.text.toLowerCase()
         return (
-          !text.includes('sissy') ||
-          !text.includes('slut') ||
-          !text.includes('mistress') ||
-          !text.includes('goon') ||
-          !text.includes('whore') ||
-          !text.includes('dommes') ||
+          !text.includes('finsub') &&
+          !text.includes('goddess') &&
+          !text.includes('humanatm') &&
+          !text.includes('sissy') &&
+          !text.includes('slut') &&
+          !text.includes('mistress') &&
+          !text.includes('goon') &&
+          !text.includes('whore') &&
+          !text.includes('dommes') &&
           !text.includes('sex')
         )
       })
